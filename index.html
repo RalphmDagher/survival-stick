@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Survival Stick</title>
+  <meta name="description" content="Prototype emergency guidance, location tools and survival skills for hikers. Opens from the NFC tag on a Survival Stick.">
+  <meta name="theme-color" content="#14232D">
+  <meta name="color-scheme" content="dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Survival Stick">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <button type="button" class="skip-link" id="skip-link">Skip to content</button>
+
+  <div class="app" id="app">
+    <header class="topbar" id="topbar"></header>
+
+    <main id="main" tabindex="-1">
+      <!-- Shown until the app starts, and if JavaScript cannot run. -->
+      <section class="boot">
+        <h1>Survival Stick</h1>
+        <p>Loading the emergency guide…</p>
+        <p class="boot-help">If this is an emergency and the page does not load, use your phone's dialer to call the emergency number of the country you are in.</p>
+      </section>
+    </main>
+
+    <nav class="bottomnav" id="bottomnav" aria-label="Main navigation"></nav>
+  </div>
+
+  <noscript>
+    <p class="noscript">Survival Stick needs JavaScript to show the interactive guides. In an emergency, call the emergency number of the country you are in.</p>
+  </noscript>
+
+  <script src="offline-manifest.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
