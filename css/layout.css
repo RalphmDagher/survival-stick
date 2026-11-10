@@ -1,0 +1,170 @@
+/* ==========================================================================
+   Survival Stick — layout: app shell, top bar, bottom navigation
+   ========================================================================== */
+
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Top bar ---- */
+.topbar {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: calc(var(--top-h) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px));
+  background: rgba(20, 35, 45, 0.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-block-end: 1px solid var(--line);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: var(--content-w);
+  margin-inline: auto;
+}
+.topbar-title {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.125rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brand {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding-inline: 8px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.01em;
+}
+.brand svg { width: 30px; height: 30px; }
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--snow);
+}
+.icon-btn:active { background: var(--surface); }
+.sos-pill {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+}
+.sos-pill svg { width: 18px; height: 18px; }
+
+/* ---- Main content ---- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-w);
+  margin-inline: auto;
+  padding: var(--pad) max(var(--pad), env(safe-area-inset-right, 0px)) calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px) max(var(--pad), env(safe-area-inset-left, 0px));
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  animation: page-in 0.22s ease-out both;
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.page-head { display: flex; flex-direction: column; gap: 8px; margin-block-end: 4px; }
+.section { display: flex; flex-direction: column; gap: 12px; margin-block-start: 8px; }
+.section-title {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+.row > * { flex: 1 1 140px; }
+
+.boot { padding-block: 48px; display: grid; gap: 12px; }
+.boot-help { color: var(--muted); }
+
+/* ---- Bottom navigation ---- */
+.bottomnav {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 30;
+  background: rgba(27, 44, 56, 0.96);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-block-start: 1px solid var(--line);
+  padding-block-end: env(safe-area-inset-bottom, 0px);
+}
+.bottomnav ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: var(--content-w);
+  margin-inline: auto;
+}
+.bottomnav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: var(--nav-h);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+.bottomnav a svg { width: 24px; height: 24px; }
+.bottomnav a[aria-current='page'] { color: var(--orange); }
+.bottomnav a:focus-visible { outline-offset: -4px; }
+
+@media (min-width: 800px) {
+  h1 { font-size: 2.25rem; }
+  .bottomnav {
+    inset-inline: 50%;
+    inset-block-end: 16px;
+    width: 440px;
+    margin-inline-start: -220px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding-block-end: 0;
+  }
+  main { padding-block-start: 32px; }
+}
+
+/* Mirror direction-dependent icons in right-to-left languages. */
+[dir='rtl'] .flip svg { transform: scaleX(-1); }
